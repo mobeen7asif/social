@@ -4,19 +4,10 @@ namespace App\Http\Requests\User;
 
 use App\Http\Requests\Request;
 
-class AddUserRequest extends Request
+class LoginRequest extends Request
 {
 
-    public function storableAttrs()
-    {
-        $attributes = [
 
-            'first_name' => $this->input('first_name'),
-            'email' => $this->input('email'),
-            'password' => bcrypt($this->input('password'))
-        ];
-        return $attributes;
-    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -36,9 +27,8 @@ class AddUserRequest extends Request
     public function rules()
     {
         $rules = [
-            'first_name'=>'required|max:190',
-            'email'=>'required|email|unique:users',
-            'password' => 'required|min:4'
+            'email'=>'required|email',
+            'password' => 'required'
         ];
         return $rules;
     }

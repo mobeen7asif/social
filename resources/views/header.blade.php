@@ -17,8 +17,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">Logout</a></li>
-                    <li><a href="">Account</a></li>
+                    <li><a href="{{url('/')}}/logout">Logout</a></li>
+                    <li><a href="{{url('/')}}/account">Account</a></li>
 
                 </ul>
 

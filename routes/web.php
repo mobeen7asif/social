@@ -24,3 +24,33 @@ Route::post('signin' , [
 
     'uses' => 'UsersController@postSignIn'
 ]);
+Route::get('account' , [
+    'uses' => 'UsersController@getAccount'
+]);
+
+Route::group(['middleware' => 'auth'], function () {
+
+
+    Route::get('/dashboard', [
+        'uses' => 'PostController@getDashboard',
+        'as' => 'dashboard',
+    ]);
+
+    Route::post('save/account' , [
+        'uses' => 'UsersController@postSaveAccount'
+    ]);
+
+    Route::get('/logout', [
+        'uses' => 'UsersController@getLogOut',
+    ]);
+});
+
+Route::get('/', [
+    'uses'=>'HomeController@index',
+    'as'=>'home'
+]);
+
+
+
+
+
