@@ -24,4 +24,9 @@ class PostController extends Controller
         return view('dashboard');
     }
 
+    public function postCreatePost(Requests\User\LoginRequest $request)
+    {
+
+    }
+
 }

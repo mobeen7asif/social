@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [
         'uses' => 'UsersController@getLogOut',
     ]);
+
+    Route::post('create/post' , [
+        'uses' => 'PostController@postCreatePost'
+    ]);
 });
 
 Route::get('/', [
