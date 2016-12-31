@@ -18,4 +18,6 @@ class UsersRepository extends Repository
         $this->setModel($user);
     }
 
+
+
 }

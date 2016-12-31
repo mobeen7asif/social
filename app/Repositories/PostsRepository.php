@@ -19,4 +19,20 @@ class PostsRepository extends Repository
         $this->setModel($post);
     }
 
+    public function getPosts()
+    {
+        return $this->getModel()->with('comments')->get();
+    }
+
+    public function postUpdate($user_id , $post_id , $post)
+    {
+//        return $this->getModel()->where('id' , $post_id)->where('user_id' , $user_id)
+//        ->update(['body' => $post]);
+
+        $postData = $this->getModel()->find($post_id);
+        $postData->body = $post;
+        $postData->update();
+        return $postData;
+    }
+
 }

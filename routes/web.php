@@ -47,12 +47,46 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('create/post' , [
         'uses' => 'PostController@postCreatePost'
     ]);
+
+    Route::get('/posts', [
+        'uses' => 'PostController@getAllPosts',
+    ]);
+
+    Route::get('/delete/{postId}' , [
+        'uses' => 'PostController@postDeletePost'
+    ]);
+
+
 });
 
 Route::get('/', [
     'uses'=>'HomeController@index',
     'as'=>'home'
 ]);
+
+
+
+
+Route::post('like/{post_id}' , [
+    'uses' => 'PostController@like'
+]);
+
+
+Route::post('Dislike/{post_id}' , [
+    'uses' => 'PostController@disLike'
+]);
+
+Route::post('update/{postId}' , [
+    'uses' => 'PostController@postUpdatePost'
+]);
+
+Route::post('comment/{postId}' , [
+    'uses' => 'CommentsController@postComment'
+]);
+
+
+
+
 
 
 
