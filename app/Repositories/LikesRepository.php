@@ -29,4 +29,13 @@ class LikesRepository extends Repository
 
     }
 
+    public function get_likes($post_id)
+    {
+        $usersTable = (new UsersRepository(new User()))->getModel()->getTable();
+        $likesTable = $this->getModel()->getTable();
+        return $this->getModel()->select($usersTable.".first_name")
+            ->leftJoin($usersTable, $likesTable.".user_id", "=", $usersTable.".id")
+            ->where($likesTable.".post_id", $post_id)->get();
+    }
+
 }

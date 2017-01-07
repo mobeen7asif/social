@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\UsersRepository;
 use App\Http\Requests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -59,4 +60,5 @@ class UsersController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
+
 }

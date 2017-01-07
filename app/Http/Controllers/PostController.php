@@ -8,6 +8,7 @@ use App\Repositories\PostsRepository;
 use App\Repositories\UsersRepository;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends Controller
 {
@@ -97,5 +98,27 @@ class PostController extends Controller
             echo json_encode($data);
         }
     }
+
+    public function getLikes(Requests\Post\OtherLikes $request)
+    {
+
+        $post_id = $request->route()->parameter('postId');
+        $data = $this->likesRepo->get_likes($post_id);
+        echo json_encode($data);
+    }
+
+
+    public function getPersonTimeline(Request $request)
+    {
+        $user_id = $request->route()->parameter('user_id');
+        $user = $this->usersRepo->findById($user_id);
+        $posts = $this->postRepo->getPersonPosts($user_id);
+
+        return view('person-timeline', ['posts' => $posts] , ['user' => $user->first_name]);
+
+    }
+
+
+
 
 }

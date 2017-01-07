@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::post('signup' , [
 
@@ -56,6 +56,11 @@ Route::group(['middleware' => 'auth'], function () {
         'uses' => 'PostController@postDeletePost'
     ]);
 
+    Route::get('person/timeline/{user_id}', [
+
+        'uses' => 'PostController@getPersonTimeline'
+    ]);
+
 
 });
 
@@ -82,6 +87,11 @@ Route::post('update/{postId}' , [
 
 Route::post('comment/{postId}' , [
     'uses' => 'CommentsController@postComment'
+]);
+
+
+Route::get('other/likes/{postId}' , [
+    'uses' => 'PostController@getLikes'
 ]);
 
 

@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Comment;
 use App\Post;
 use App\User;
 
@@ -34,5 +35,19 @@ class PostsRepository extends Repository
         $postData->update();
         return $postData;
     }
+
+    public function getPersonPosts($user_id)
+    {
+        $commentsTable = (new CommentsRepository(new Comment()))->getModel()->getTable();
+        $postsTable = $this->getModel()->getTable();
+
+//        return $this->getModel()->select($postsTable.".body", $commentsTable.".comment")
+//            ->leftJoin($commentsTable, $commentsTable.".post_id", "=", $postsTable.".id")
+//            ->where($postsTable.".user_id", $user_id)->get();
+//            //->where('user_id',$user_id)->get();
+
+        return $this->getModel()->with('comments')->where('user_id',$user_id)->get();
+    }
+
 
 }

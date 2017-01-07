@@ -6,21 +6,9 @@
             {{\Session::get('success')}}
         </h4>
     @endif
-    <section class="row new-post">
-        <div class="col-md-6 col-md-offset-3">
-            <header><h3>What do you have to say?</h3></header>
-            <form action="{{url('/')}}/create/post" method="post">
-                <div class="form-group">
-                    <textarea class="form-control" name="body" id="new-post" rows="5" placeholder="Your Post"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Create Post</button>
-                <input type="hidden" value="{{ Session::token() }}" name="_token">
-            </form>
-        </div>
-    </section>
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
-            <header id="user" data-owner="{{json_encode(['owner' => Auth::user()->first_name])}}"><h3>What other people say...</h3></header>
+            <header id="user" data-owner="{{json_encode(['owner' => Auth::user()->first_name])}}"><h3>{{'Posts of '.$user}}</h3></header>
             @foreach($posts as $post)
                 <article class="post" data-id="{{$post->id}}">
                     <p data-post="{{$post->body}}">{{ $post->body }}</p>

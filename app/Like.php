@@ -14,6 +14,7 @@ class Like extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'likes';
     protected $fillable = [
         'user_id', 'post_id','like'
     ];
